@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Login Container -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <div class="logo">M</div>
+            <h2>Login to Movie Recommendations</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="email" required placeholder="Email">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" required placeholder="Password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="showRegisterLink">Register here</a></p>
+        </div>
+    </div>
+
+    <!-- Register Container -->
+    <div id="registerContainer"  style="display: none;">
+        <div class="login-box">
+            <div class="logo">M</div>
+            <h2>Register for Movie Recommendations</h2>
+            <form id="registerForm">
+                <div class="input-group">
+                    <input type="text" id="regUsername" required placeholder="Username">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="regEmail" required placeholder="Email">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regPassword" required placeholder="Password">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regConfirmPassword" required placeholder="Confirm Password">
+                </div>
+                <div class="input-group">
+                    <label for="gender">Gender:</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" value="Male" required>
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <button type="button" id="registerBtn">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" id="showLoginLink">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="mainContainer" style="display: none;">
+        <header>
+            <div class="brand">
+                <div class="logo">M</div>
+                <h1 id="homePageLink">Movie Recommendation</h1>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search for movies..." list="movie-suggestions">
+                <datalist id="movie-suggestions"></datalist>
+                <button id="searchBtn">Search</button>
+            </div>
+            <div class="user-info">
+                <span id="userEmail"></span>
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </header>
+
+        <main>
+            <section id="recommendations">
+                <h2>Recommended Movies</h2>
+                <div id="movies" class="movie-list"></div>
+            </section>
+
+            <section id="userReviews">
+                <h2>User Reviews</h2>
+                <div id="reviews" class="review-list"></div>
+            </section>
+
+            <button id="goHomeBtn" class="go-home-btn" style="display:none;">Go to Home Page</button>
+        </main>
+
+        <!-- Movie Detail Modal -->
+        <div id="movieModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-movie-content">
+                    <img id="modalMovieImage" src="" alt="Movie Poster">
+                    <div class="modal-movie-info">
+                        <h2 id="modalMovieTitle"></h2>
+                        <p id="modalMovieDescription"></p>
+                        <div class="star-rating">
+                            <i class="fas fa-star" data-rating="1"></i>
+                            <i class="fas fa-star" data-rating="2"></i>
+                            <i class="fas fa-star" data-rating="3"></i>
+                            <i class="fas fa-star" data-rating="4"></i>
+                            <i class="fas fa-star" data-rating="5"></i>
+                        </div>
+                        <div class="review-section">
+                            <textarea id="modalReview" placeholder="Write your review..."></textarea>
+                            <button id="submitModalReview">Submit Review</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<!-- Interest Container -->
+<div id="interestContainer" style="display: none;">
+    <div class="login-box">
+        <h2>Select Your Interests</h2>
+        <form id="interestForm">
+            <!-- Add checkboxes with labels for different genres -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="action" name="interest" value="Action">
+                <label for="action">Action</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="comedy" name="interest" value="Comedy">
+                <label for="comedy">Comedy</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="drama" name="interest" value="Drama">
+                <label for="drama">Drama</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="romance" name="interest" value="Romance">
+                <label for="romance">Romance</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="horror" name="interest" value="Horror">
+                <label for="horror">Horror</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="sci-fi" name="interest" value="Sci-Fi">
+                <label for="sci-fi">Sci-Fi</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="fantasy" name="interest" value="Fantasy">
+                <label for="fantasy">Fantasy</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="thriller" name="interest" value="Thriller">
+                <label for="thriller">Thriller</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="animation" name="interest" value="Animation">
+                <label for="animation">Animation</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="documentary" name="interest" value="Documentary">
+                <label for="documentary">Documentary</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="crime" name="interest" value="Crime">
+                <label for="crime">Crime</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="mystery" name="interest" value="Mystery">
+                <label for="mystery">Mystery</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="musical" name="interest" value="Musical">
+                <label for="musical">Musical</label>
+            </div>
+            <button type="submit">Submit</button>
+            <a href="#" id="skipInterestsLink">Skip</a>
+        </form>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
